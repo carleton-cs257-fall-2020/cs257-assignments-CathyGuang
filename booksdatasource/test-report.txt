@@ -1,0 +1,26 @@
+'''
+Cathy Guang
+Testing the unit tests in booksdatasourcetest.py
+Oct 6, 2020
+'''
+General Statement:
+Our booksdatasourcetest didn't test for the whole books.csv or authors.csv files. Some methods should be testing on the entire list of books and authors
+
+Bug fixed:
+• Fixed typo for assertEquals() methods which should have been assertEqual()
+
+• Importing csv files should include quotation marks
+
+• For testing invalid author ID, we thought it would return an empty list; however, it raised a ValueError. So I changed the testing code to raise a ValueError
+
+• For assertEqual() methods, there should be two arguments, but we forgot to include our envisioned results (return_list) in for several of the tests and I added that in to solve the error.
+
+Bug found in implementation:
+• On line 54 of booksdatasource.py implementation, only the birth_year input was converted into integer, while the death_year was directly stored as a string.
+We used test_authorf_search_text_exists and tested that our expected dictionary of author information was not contained in the result, which was because the death_year of result returned by this implementation was a string
+
+• In the book method, when sorted by publication year, the implementation didn't break tie. 
+We used test_booksf_sort_by_pub_year(self) method to sort the booksdatasource according to publication year. One failure raised when I ran the test.
+
+• In the book method, when sorted by title, the implementation didn't break tie. 
+Our testing didn't show a failure message for this, but while checking for sorting by publication year, I found this error.

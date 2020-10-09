@@ -1,0 +1,27 @@
+NAME
+	books.py
+
+SYNOPSIS
+	python3 books.py -a=[SEARCHSTRING]
+	python3 books.py --daterange
+	python3 books.py -h --help
+	python3 books.py -t=[SEARCHSTRING]
+
+DESCRIPTION
+	books.py can perform various operations on a dataset of books, given the following mandatory command-line arguments. Books.py has the ability to display a list of books within a specified inclusive range of dates. It can also display all books whose titles contain a given search string, as well as display all authors whose names contain a given search string, as well as all books published by those authors. Only one of these operations can be performed at one time.
+
+OPTIONS
+	-a=[SEARCHSTRING]   -a [SEARCHSTRING]   --author=[SEARCHSTRING] --author [SEARCHSTRING]
+		Displays all authors whose names contain the given SEARCHSTRING, as well as all of their books. The SEARCHSTRING is case insensitive and should be entered without quotation marks. The SEARCHSTRING is mandatory for this operation.
+
+	--daterange [STARTYEAR] [ENDYEAR]
+		Displays all books that were published within the given inclusive date range. STARTYEAR must be an earlier year than ENDYEAR. STARTYEAR and ENDYEAR are mandatory for this operation.
+
+  	-h     --help
+	  	Display this help page and exit
+
+  	-t=[SEARCHSTRING]   -t [SEARCHSTRING]    --title=[SEARCHSTRING]  --titles [SEARCHSTRING]
+	  	Displays all books where the title contains the given SEARCHSTRING. The SEARCHSTRING is case insensitive and should be entered without quotation marks. The SEARCHSTRING is mandatory for this operation.
+
+AUTHORS
+	Cathy Guang and Alison Cameron for Carleton College Software Design (CS257)

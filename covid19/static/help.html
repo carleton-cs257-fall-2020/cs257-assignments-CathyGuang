@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie API reference</title>
+</head>
+<body>
+    <pre>Movie API: endpoint reference
+All responses are in JSON
+
+REQUEST: /state/{state-abbreviation}/daily
+
+RESPONSE: a JSON list of dictionaries, each of which represents the
+COVID-19 statistics from the specified state on a single date. Each
+dictionary will have the following fields.
+
+   date -- YYYY-MM-DD (e.g. "2020-10-08")
+   state -- upper-case two-letter state abbreviation (e.g. "MN")
+   deaths -- (integer) the number of deaths on this date
+   positive -- (integer) the number of positive COVID-19 tests on this date
+   negative -- (integer) the number of negative COVID-19 tests on this date
+   hospitalizations -- (integer) the number of new hospitalizations
+	   for COVID-19 on this date
+
+
+REQUEST: /state/{state-abbreviation}/cumulative
+
+RESPONSE: a single JSON dictionary representing the cumulative
+statistics for the specified state. The dictionary will have the
+following fields.
+
+   start_date -- YYYY-MM-DD (e.g. "2020-10-08")
+   end_date -- YYYY-MM-DD (e.g. "2020-03-11")
+   state -- upper-case two-letter state abbreviation (e.g. "MN")
+   deaths -- (integer) the total number of deaths between the
+	   start and end dates (inclusive)
+   positive -- (integer) the number of positive COVID-19 tests
+   	   between the start and end dates (inclusive)
+   negative -- (integer) the number of negative COVID-19 tests
+   	   between the start and end dates (inclusive)
+   hospitalizations -- (integer) the number of hospitalizations
+   	   between the start and end dates (inclusive)
+
+
+REQUEST: /states/cumulative?sort=[deaths|cases|hospitalizations]
+
+RESPONSE: a JSON list of dictionaries, each representing the
+cumulative COVID-19 statistics for each state. The dictionaries are
+sorted in decreasing order of deaths, cases (i.e. positive tests), or hospitalizations,
+depending on the value of the GET parameter "sort". If sort is not
+present, then the list will be sorted by deaths. Each dictionary
+will have the same fields as in the
+/state/{state-abbreviation}/cumulative endpoint response.
+    </pre>
+</body>
+</html>

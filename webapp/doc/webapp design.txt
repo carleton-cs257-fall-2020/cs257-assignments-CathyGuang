@@ -1,0 +1,134 @@
+Cathy Guang and Lingyu Wei
+
+
+Formula 1 Race Data
+https://www.kaggle.com/cjgdev/formula-1-race-data-19502017?select=circuits.csv
+Our dataset consists of 7 different csv documents that have connections and present various information about formula 1 race car data from 1950 all the way through the 2017 season. 
+
+
+circuits.csv contains data of circuitsID, names, locations, country, and URLs with more geographic information of formula 1 races’ circuits from Wikipedia.
+
+
+constructors.csv contains a list with constructorID, constructor name, nationality, and URLs linking to Wikipedia page.
+
+
+drivers.csv contains information about every F1 driver with their name, DOB, and nationality.
+
+
+lapTimes.csv contains data of lap time for each race, including driver, lap number, time, and position.
+
+
+pitStops.csv contains details of every pitstop in Formula 1, including the time of the pit stop, the duration, the race and driver.
+
+
+races.csv contains details of every race, including year, round, date, and circuit ID. 
+
+
+results.csv contains information about raceId, driverId, constructorId, points, positionText, positionOrder, fastestLap, and fastestLapSpeed. 
+
+
+CREATE TABLE circuits (
+    circuitId INT,
+    circuitRef TEXT,
+    name TEXT,
+    location INT,
+    country INT,
+    url TEXT
+);
+
+
+CREATE TABLE constructors (
+    constructorId INT,
+    constructorRef TEXT,
+    name TEXT,
+    nationality TEXT,
+    url TEXT,
+);
+
+
+CREATE TABLE drivers (
+    driverId INT,
+    driverRef TEXT,
+    forename TEXT,
+    surname TEXT,
+    dob TEXT,
+    nationality TEXT,
+    url TEXT
+);
+
+
+CREATE TABLE lapTimes (
+    raceID INT,
+    driverID INT,
+    lap INT,
+    position INT,
+    time INT,
+    milliseconds INT
+);
+
+
+CREATE TABLE pitStops (
+    raceId INT,
+    driverId INT,
+    stop INT,
+    lap INT,
+    time TEXT,
+    duration DECIMAL
+);
+
+
+CREATE TABLE races (
+    raceId INT,
+    year INT,
+    round INT,
+    circuitID INT,
+    name TEXT,
+    date TEXT,
+    url TEXT,
+);
+
+
+CREATE TABLE results (
+    raceId INT,
+    driverId INT,
+    constructorId INT,
+    positionText TEXT,
+    positionOrder TEXT
+    fastestLap INT,
+    fastestLapSpeed DECIMAL,
+    points INT
+);
+
+
+
+On the top search bar, users can search using key terms. On the left of the search bar, users can select from a drop-down list which consists of categories of the search such as “Races”, “Drivers”, or “Results” to narrow down the search results. 
+
+
+Story 1: As a fan of formula 1 race, I would like to know the current top 50 ranking F1 drivers in the world.
+
+
+Implementation: On the left of the search bar, there’s a drop down list where the user can select “Drivers”. Another drop down list will branch from the “Drivers”, where the user can select “Top”. The filtering message would then appear to the left side of the search bar. The user could enter 50 in the search bar, and then hit the “Search” button. 
+
+
+Story 2: As a British F1 fan, I would like to get all races that took place in Britain, so I may get a chance to visit these locations if possible. 
+
+
+Implementation: On the main page of our website, we could have a world map of countries, and the user can hover over a country to get two buttons,  “drivers” and “races” on that country. By clicking on “races”, the user could obtain a table of locations of each round of races each year below the world map.
+
+
+Story 3: As an American F1 fan, I would like to get a list of information about all the US drivers from 1950 to 2017. 
+
+
+Implementation: On the main page of our website, we could have a world map of countries, and the user can hover over a country to select “Drivers” or “Races”. The user can click on “Drivers”, and then a table of information about all the US drivers from 1950 to 2017 will appear below the world map. 
+
+
+Story 4: As a F1 fan, I would like to know more details about Chinese Grand Prix that was held in 2007.
+
+
+Implementation: On the left of the search bar, there will be a drop down list to narrow down the search. The drop down list allows the user to choose “Races”. Another drop down list will branch from “Races” which allows the user to choose year ranges. If the user chooses “All”, then no search-string needs to be entered in the search bar. Information about all races within the year ranges will be shown as a table. Otherwise, the webpage will show a table of race information containing the search-string. 
+
+
+Story 5: As a F1 fan, I want to know the lap-times of each driver during Chinese Grand Prix, the round 3 of the races in 2009, in order to know who drives fastest during the first lap. 
+
+
+Implementation: As described in Story4, the user will get a table of race information that happened in 2009. The user can click into the race named Chinese Grand Prix and go to another webpage. Use the filter in this page to choose lap time information.

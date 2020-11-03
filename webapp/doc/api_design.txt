@@ -1,0 +1,50 @@
+﻿Lingyu Wei, Cathy Guang
+
+
+/fone?keyword={search_text}
+
+
+Response: a JSON list of dictionaries, each of which represents information of a driver, a race, a constructor, or a circuit that contains this search_text. Each dictionary will have the following fields: 
+        type -- (string) driver, race, constructor, or circuit
+        name -- (string) name of driver, race, constructor, or circuit
+        date -- (string) date of birth of driver, date of the race, null for constructor and circuit
+        country -- (string) country of driver, race, constructor, or circuit
+        url -- (string) url of driver, race, constructor, or circuit
+
+
+/fone/topdriver?top={number}
+
+
+Response: The top number will be chosen within 10, 20, and 50, and the result will be displayed in a histogram with each column representing the cumulative scores of each driver. The histogram is processed by a JSON list of dictionaries. Each dictionary will have the following field: 
+        name -- (string) driver’s name
+        id -- (int) driverId
+        point -- (int) drivers’ points
+        
+/fone/race?country={country_name}
+
+
+Response: a JSON list of dictionaries, each of which represents information of a race took place in this specific country. Each dictionary will have the following fields:
+        name -- (string) name of race
+        date -- (string) date of the race
+        country -- (string) country of race
+        url -- (string) url of race
+
+
+/fone/driver?country={country_name}
+
+
+Response: a JSON list of dictionaries, each of which represents information of drivers born in a specific country. Each dictionary will have the following fields:
+        name -- (string) name of driver
+        date -- (string) date of the driver
+        country -- (string) country of driver
+        url -- (string) url of driver
+
+
+/fone/race?raceid={raceid}
+
+
+Response: one graph and one form representing race information. The graph is a line chart that presents the laptimes of the top three drivers in this race. The horizontal axis represents each lap, while the vertical axis is the time in seconds. Each line is a driver. The form is a JSON list of dictionaries that represents the pit stop information about the top three drivers in this race. Each dictionary will have the following fields:
+        name -- (string) name of driver
+        stoplap -- (int) the lap of stop        
+stoptime -- times of stops
+duration -- duration of each stop

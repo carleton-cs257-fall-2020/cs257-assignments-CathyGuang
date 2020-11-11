@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" type="text/css" />
+    <script type="text/javascript" src="{{ url_for('static', filename='webapp.js') }}"></script>
+    <title>Formula 1 Data Summary Home</title>
+</head>
+
+<body>
+    <h1>Formula 1
+        <span class="smaller">Data Summary</span>
+    </h1>
+    <div class="navbar">
+        <a href="index.html">Home</a>
+
+        <a href="top_driver.html">Driver</a>
+
+        <div class="dropdown">
+            <button class="dropbtn">Race</button>
+            <div class="dropdown-content">
+                <a href="20century.html">20th century</a>
+                <a href="21century.html">21st century</a>
+            </div>
+        </div>
+        <div class="search-container">
+            <form action="action_page.php">
+                <input type="text" placeholder="Keyword..." name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+    <br>
+    <h2>Races in 21st Century</h2>
+
+    <ul id="21centuryRace">
+    </ul>
+
+
+
+</body>
+
+</html>

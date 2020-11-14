@@ -10,15 +10,8 @@ window.onload = initialize;
 
 function initialize() {
     loadRaceTable();
-    var element = document.getElementById('20th century');
-    if (element) {
-        element.onclick = on20Button;
-    }
-
-    var element = document.getElementById('21st century');
-    if (element) {
-        element.onclick = on21Button;
-    }
+    loadTwentiethCenturyRace();
+    loadTwentyFirstCenturyRace();
 }
 
 function getAPIBaseURL() {
@@ -55,7 +48,7 @@ function loadRaceTable() {
     });
 }
 
-function on20Button() {
+function loadTwentiethCenturyRace() {
     var url = getAPIBaseURL() + '/race/20';
 
     fetch(url, { method: 'get' })
@@ -63,20 +56,22 @@ function on20Button() {
     .then((response) => response.json())
 
     .then(function(list_of_20_races) {
-        var listBody = '';
+        var tableBody = '';
         for (var k = 0; k < list_of_20_races.length; k++) {
             var race = list_of_20_races[k];
-            listBody += '<li>' + race['Name'] +
-                ', ' + race['Date'] +
-                '-' + race['Country'] +
-                ', ' + race['Circuit'] +
-                '-' + race['URL'] +
-                '</li>\n';
+            tableBody += '<tr>';
+            tableBody += '<td>' + race['Name'] + '</td>';
+            tableBody += '<td>' + race['Date'] + '</td>';
+            tableBody += '<td>' + race['Country'] + '</td>';
+            tableBody += '<td>' + race['Location'] + '</td>';
+            tableBody += '<td>' + race['Circuit'] + '</td>';
+            tableBody += '<td>' + race['URL'] + '</td>';
+            tableBody += '</tr>';
         }
 
         var race20ListElement = document.getElementById('20centuryRace');
         if (race20ListElement) {
-            race20ListElement.innerHTML = listBody;
+            race20ListElement.innerHTML = tableBody;
         }
     })
 
@@ -85,8 +80,8 @@ function on20Button() {
     });
 }
 
-function on21Button() {
-    var url = getAPIBaseURL() + '/race/21';
+function loadTwentyFirstCenturyRace() {
+    var url = getAPIBaseURL() + '/race/' + ;
 
     fetch(url, { method: 'get' })
 

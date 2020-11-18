@@ -5,8 +5,12 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" type="text/css" />
-    <link rel="map" href="{{url_for('static', filename='map.png')}}" />
     <script type="text/javascript" src="{{ url_for('static', filename='webapp.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='d3.min.js')}}"></script>
+    <script typr="text/javascript" src="{{ url_for('static', filename='topojson.min.js')}}"></script>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></link>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></link> -->
+    <script type="text/javascript" src="{{url_for('static', filename='datamaps.world.min.js')}}"></script>
     <title>Formula 1 Data Summary Home</title>
 </head>
 
@@ -39,9 +43,20 @@
     <br>
     <br>
 
-    <img class="map" src="{{url_for('static', filename='map.png')}}" alt="World Map">
+    <ul id="20centuryRace">
+    </ul>
+
+    <div id="world_map"></div>
+
+    <div id="country_race"></div>
+
+    <div id="country_driver"></div>
+
 
 
 </body>
+
+
+
 
 </html>

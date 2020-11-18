@@ -1,17 +1,9 @@
-/*
- * webapp.js
- * Jeff Ondich
- * 6 November 2020
- *
- * A little bit of Javascript for the tiny web app sample for CS257.
- */
-
 window.onload = initialize;
 
 function initialize() {
-    loadRaceTable();
-    loadTwentiethCenturyRace();
-    loadTwentyFirstCenturyRace();
+    load20thCenRaceTable();
+    load21thCenRaceTable();
+    initializeMap();
 }
 
 function getAPIBaseURL() {
@@ -19,36 +11,7 @@ function getAPIBaseURL() {
     return baseURL;
 }
 
-function loadRaceTable() {
-    var url = getAPIBaseURL() + '/race/20';
-
-    fetch(url, { method: 'get' })
-
-    .then((response) => response.json())
-
-    .then(function(list_of_20_races) {
-        var listBody = '';
-        for (var k = 0; k < list_of_20_races.length; k++) {
-            var race = list_of_20_races[k];
-            listBody += '<li>' + race['Name'] +
-                ', ' + race['Date'] +
-                '-' + race['Country'] +
-                ', ' + race['Circuit'] +
-                '-' + race['URL'] +
-                '</li>\n';
-        }
-        var race20ListElement = document.getElementById('20centuryRace');
-        if (race20ListElement) {
-            race20ListElement.innerHTML = listBody;
-        }
-    })
-
-    .catch(function(error) {
-        console.log(error);
-    });
-}
-
-function loadTwentiethCenturyRace() {
+function load20thCenRaceTable() {
     var url = getAPIBaseURL() + '/race/20';
 
     fetch(url, { method: 'get' })
@@ -68,7 +31,6 @@ function loadTwentiethCenturyRace() {
             tableBody += '<td>' + race['URL'] + '</td>';
             tableBody += '</tr>';
         }
-
         var race20ListElement = document.getElementById('20centuryRace');
         if (race20ListElement) {
             race20ListElement.innerHTML = tableBody;
@@ -80,28 +42,110 @@ function loadTwentiethCenturyRace() {
     });
 }
 
-function loadTwentyFirstCenturyRace() {
-    var url = getAPIBaseURL() + '/race/' + ;
+function load21thCenRaceTable() {
+    var url = getAPIBaseURL() + '/race/21';
 
     fetch(url, { method: 'get' })
 
     .then((response) => response.json())
 
     .then(function(list_of_21_races) {
-        var listBody = '';
+        var tableBody = '';
         for (var k = 0; k < list_of_21_races.length; k++) {
             var race = list_of_21_races[k];
-            listBody += '<li>' + race['Name'] +
-                ', ' + race['Date'] +
-                '-' + race['Country'] +
-                ', ' + race['Circuit'] +
-                '-' + race['URL'] +
-                '</li>\n';
+            tableBody += '<tr>';
+            tableBody += '<td>' + race['Name'] + '</td>';
+            tableBody += '<td>' + race['Date'] + '</td>';
+            tableBody += '<td>' + race['Country'] + '</td>';
+            tableBody += '<td>' + race['Location'] + '</td>';
+            tableBody += '<td>' + race['Circuit'] + '</td>';
+            tableBody += '<td>' + race['URL'] + '</td>';
+            tableBody += '</tr>';
         }
+        var race21ListElement = document.getElementById('21centuryRace');
+        if (race21ListElement) {
+            race21ListElement.innerHTML = tableBody;
+        }
+    })
 
-        var race20ListElement = document.getElementById('21centuryRace');
+    .catch(function(error) {
+        console.log(error);
+    });
+}
+
+function initializeMap() {
+    var map = new Datamap({
+        element: document.getElementById('world_map'),
+        scope: 'world',
+        projection: 'mercator',
+        done: onMapDone,
+        fills: { defaultFill: 'crimson' },
+        geographyConfig: {
+            popupTemplate: hoverPopupTemplate,
+            borderColor: '#eeeeee',
+            highlightFillColor: '#eeeeee',
+            highlightBorderColor: 'crimson',
+        }
+    });
+}
+
+function doneMap(dataMap) {
+    dataMap.svg.selectAll('.datamaps-subunit').on('click', clickCountryRace, clickCountryDriver);
+}
+
+function clickCountryRace(geography) {
+    var url = getAPIBaseURL() + '/race/country/' + geography.properties.name;
+
+    fetch(url, { method: 'get' })
+
+    .then((response) => response.json())
+
+    .then(function(list_of_country_races) {
+        var tableBody = '';
+        for (var k = 0; k < list_of_country_races.length; k++) {
+            var race = list_of_country_races[k];
+            tableBody += '<tr>';
+            tableBody += '<td>' + race['Name'] + '</td>';
+            tableBody += '<td>' + race['Date'] + '</td>';
+            tableBody += '<td>' + race['Country'] + '</td>';
+            tableBody += '<td>' + race['Location'] + '</td>';
+            tableBody += '<td>' + race['Circuit'] + '</td>';
+            tableBody += '<td>' + race['URL'] + '</td>';
+            tableBody += '</tr>';
+        }
+        var countrySummaryElement = document.getElementById('country_race');
         if (race20ListElement) {
-            race20ListElement.innerHTML = listBody;
+            race20ListElement.innerHTML = tableBody;
+        }
+    })
+
+    .catch(function(error) {
+        console.log(error);
+    });
+}
+
+function clickCountryDriver(geography) {
+    var url = getAPIBaseURL() + '/driver/country/' + geography.properties.name;
+
+    fetch(url, { method: 'get' })
+
+    .then((response) => response.json())
+
+    .then(function(list_of_country_drivers) {
+        var tableBody = '';
+        for (var k = 0; k < list_of_country_drivers.length; k++) {
+            var driver = list_of_country_drivers[k];
+            tableBody += '<tr>';
+            tableBody += '<td>' + driver['Forename'] + '</td>';
+            tableBody += '<td>' + driver['Surname'] + '</td>';
+            tableBody += '<td>' + driver['Date of Birth'] + '</td>';
+            tableBody += '<td>' + driver['Nationality'] + '</td>';
+            tableBody += '<td>' + driver['URL'] + '</td>';
+            tableBody += '</tr>';
+        }
+        var countrySummaryElement = document.getElementById('country_driver');
+        if (race20ListElement) {
+            race20ListElement.innerHTML = tableBody;
         }
     })
 

@@ -145,3 +145,26 @@ th {
 .diagrams {
     text-align: center;
 }
+
+#world_map {
+    position: relative;
+    float: left;
+    height: 0;
+    width: 100%;
+    padding-bottom: 60%;
+    background: black;
+}
+
+#country_race {
+    width: 40%;
+}
+
+#country_driver {
+    width: 40%;
+}
+
+.hoverpopup {
+    background: #eeeeee;
+    border: 1px black solid;
+    padding: 3px;
+}

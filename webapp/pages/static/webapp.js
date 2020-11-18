@@ -78,10 +78,9 @@ function initializeMap() {
         element: document.getElementById('world_map'),
         scope: 'world',
         projection: 'mercator',
-        done: onMapDone,
+        done: doneMap,
         fills: { defaultFill: 'crimson' },
         geographyConfig: {
-            popupTemplate: hoverPopupTemplate,
             borderColor: '#eeeeee',
             highlightFillColor: '#eeeeee',
             highlightBorderColor: 'crimson',

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{url_for('static', filename='chartist.min.css')}}">
     <script type="text/javascript" src="{{ url_for('static', filename='webapp.js') }}"></script>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
     <script type="text/javascript" src="{{ url_for('static', filename='topdriver.js') }}"></script>
     <title>Formula 1 Data Summary Home</title>
@@ -86,6 +87,7 @@
             <option value="50">Top 50</option>
         </select>
     </div>
+    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
     <div class="sample-chart-container">
         <div class="chart-title">To be implemented</div>
         <div class="ct-chart ct-perfect-fourth" id="sample-line-chart"></div>

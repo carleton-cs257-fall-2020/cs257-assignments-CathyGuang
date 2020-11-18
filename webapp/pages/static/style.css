@@ -27,7 +27,17 @@ h1 .smaller {
 }
 
 h2 {
-    padding-left: 30px;
+    color: white;
+    padding-left: 15px;
+    padding-top: 20px;
+    background-color: black;
+}
+
+h3 {
+    color: white;
+    padding-left: 15px;
+    padding-top: 20px;
+    background-color: black;
 }
 
 .navbar {

@@ -67,7 +67,7 @@ def get_races_by_country(country_name):
             races.date, races.url, circuits.id, circuits.name, circuits.location, circuits.country, circuits.url
             FROM races, circuits
             WHERE races.circuitID = circuits.id'''
-    list_of_races = []
+    list_of_country_races = []
     try:
         connection = get_connection()
         cursor = connection.cursor()
@@ -81,7 +81,7 @@ def get_races_by_country(country_name):
                 race_dict["Location"] = row[9]
                 race_dict["Circuit"] = row[8]
                 race_dict["URL"] = row[6]
-                list_of_races.append(race_dict)
+                list_of_country_races.append(race_dict)
         cursor.close()
         connection.close()
     except Exception as e:
@@ -94,7 +94,7 @@ def get_races_by_country(country_name):
 def get_drivers_by_country(country_name):
     query = '''SELECT drivers.id, drivers.forename, drivers.surname, drivers.dob, drivers.nationality, drivers.url
             FROM drivers'''
-    list_of_drivers = []
+    list_of_country_drivers = []
     try:
         connection = get_connection()
         cursor = connection.cursor()
@@ -107,7 +107,7 @@ def get_drivers_by_country(country_name):
                 driver_dict["Date of Birth"] = row[3].strftime("%Y-%m-%d")
                 driver_dict["Nationality"] = row[4]
                 driver_dict["URL"] = row[5]
-                list_of_drivers.append(driver_dict)
+                list_of_country_drivers.append(driver_dict)
         cursor.close()
         connection.close()
     except Exception as e:

@@ -104,17 +104,17 @@ function clickCountryRace(geography) {
         for (var k = 0; k < list_of_country_races.length; k++) {
             var race = list_of_country_races[k];
             tableBody += '<tr>';
-            tableBody += '<td>' + race['Name'] + '</td>';
+            tableBody += '<td>' + '<a href=' + race['URL'] + '>' + race['Name'] + '</a>' + '</td>';
             tableBody += '<td>' + race['Date'] + '</td>';
             tableBody += '<td>' + race['Country'] + '</td>';
             tableBody += '<td>' + race['Location'] + '</td>';
             tableBody += '<td>' + race['Circuit'] + '</td>';
-            tableBody += '<td>' + race['URL'] + '</td>';
+            //tableBody += '<td>' + race['URL'] + '</td>';
             tableBody += '</tr>';
         }
         var countrySummaryElement = document.getElementById('country_race');
-        if (race20ListElement) {
-            race20ListElement.innerHTML = tableBody;
+        if (countrySummaryElement) {
+            countrySummaryElement.innerHTML = tableBody;
         }
     })
 
@@ -143,8 +143,8 @@ function clickCountryDriver(geography) {
             tableBody += '</tr>';
         }
         var countrySummaryElement = document.getElementById('country_driver');
-        if (race20ListElement) {
-            race20ListElement.innerHTML = tableBody;
+        if (countrySummaryElement) {
+            countrySummaryElement.innerHTML = tableBody;
         }
     })
 

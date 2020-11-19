@@ -1,7 +1,7 @@
 window.onload = initialize;
 
 function initialize() {
-    createDriverLineChart();
+    createDriverBarChart();
 }
 
 function getAPIBaseURL() {
@@ -9,31 +9,31 @@ function getAPIBaseURL() {
     return baseURL;
 }
 
-function createDriverLineChart() {
-    var chart = new CanvasJS.Chart("chartContainer", {
+function createDriverBarChart(number) {
+    var url = getAPIBaseURL() + '/topdriver/' + 20;
 
-        title: {
-            text: "Earthquakes - per month"
-        },
-        data: [{
-            type: "line",
+    fetch(url, { method: 'get' })
 
-            dataPoints: [
-                { x: new Date(2012, 00, 1), y: 450 },
-                { x: new Date(2012, 01, 1), y: 414 },
-                { x: new Date(2012, 02, 1), y: 520 },
-                { x: new Date(2012, 03, 1), y: 460 },
-                { x: new Date(2012, 04, 1), y: 450 },
-                { x: new Date(2012, 05, 1), y: 500 },
-                { x: new Date(2012, 06, 1), y: 480 },
-                { x: new Date(2012, 07, 1), y: 480 },
-                { x: new Date(2012, 08, 1), y: 410 },
-                { x: new Date(2012, 09, 1), y: 500 },
-                { x: new Date(2012, 10, 1), y: 480 },
-                { x: new Date(2012, 11, 1), y: 510 }
+    .then((response) => response.json())
+
+    .then(function(top_driver_list) {
+
+        var label_list = [];
+        for (var k = 0; k < top_driver_list.length; k++) {
+            var top_driver = top_driver_list[k];
+            label_list.push(top_driver);
+        }
+        var data = {
+            labels: ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'],
+            series: [
+                { data: [17, -2, 4, 9, 11, 7, 2] },
+                { data: [1, 2, 3, 5, 8, 13, 21] }
             ]
-        }]
-    });
+        };
+        new Chartist.Bar('#sample-bar-chart', data, options);
+    })
 
-    chart.render();
+    .catch(function(error) {
+        console.log(error);
+    });
 }

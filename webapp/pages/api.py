@@ -92,15 +92,16 @@ def get_races_by_country(country_name):
 # on the home page: click on a country on the map, return a JSON list of drivers from that country
 @api.route('/driver/country/<country_name>')
 def get_drivers_by_country(country_name):
-    query = '''SELECT drivers.id, drivers.forename, drivers.surname, drivers.dob, drivers.nationality, drivers.url
-            FROM drivers'''
+    query = '''SELECT drivers.id, drivers.forename, drivers.surname, drivers.dob, drivers.nationality, drivers.url, nationality.country, nationality.nationality
+            FROM drivers, nationality
+            WHERE drivers.naitonality = nationality.nationality'''
     list_of_country_drivers = []
     try:
         connection = get_connection()
         cursor = connection.cursor()
         cursor.execute(query)
         for row in cursor:
-            if row[4] == country_name:
+            if row[-1] == country_name:
                 driver_dict = {}
                 driver_dict["Forename"] = row[1]
                 driver_dict["Surname"] = row[2]

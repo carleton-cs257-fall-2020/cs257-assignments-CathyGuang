@@ -5,6 +5,7 @@
 
 body {
     font-family: fantasy;
+    background-image: url("bbg.jpg");
 }
 
 h1 {
@@ -30,20 +31,17 @@ h2 {
     color: white;
     padding-left: 15px;
     padding-top: 20px;
-    background-color: black;
 }
 
 h3 {
     color: white;
     padding-left: 15px;
     padding-top: 20px;
-    background-color: black;
+    padding-bottom: 20px;
 }
 
 .navbar {
     overflow: hidden;
-    /* position: sticky; */
-    /* top: 0px; */
     background-color: #333;
 }
 
@@ -145,12 +143,13 @@ h3 {
     border-collapse: collapse;
 }
 
-td,
+
+/* td,
 th {
     border: 2px solid #dddddd;
     text-align: left;
     padding: 10px;
-}
+} */
 
 .diagrams {
     text-align: center;
@@ -162,7 +161,7 @@ th {
     height: 0;
     width: 100%;
     padding-bottom: 60%;
-    background: black;
+    background-color: transparent;
 }
 
 #country_race {
@@ -177,4 +176,40 @@ th {
     background: #eeeeee;
     border: 1px black solid;
     padding: 3px;
+}
+
+.country_race_table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+    margin: 0 auto;
+    margin-bottom: 100px;
+}
+
+.twentieth_race_table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+    margin: 0 auto;
+    margin-bottom: 100px;
+    /* overflow-x: auto; */
+}
+
+th,
+td {
+    text-align: left;
+    padding: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: black;
+}
+
+tr:nth-child(odd) {
+    background-color: gray;
 }

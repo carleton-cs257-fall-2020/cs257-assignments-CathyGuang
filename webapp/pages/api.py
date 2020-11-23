@@ -94,14 +94,15 @@ def get_races_by_country(country_name):
 def get_drivers_by_country(country_name):
     query = '''SELECT drivers.id, drivers.forename, drivers.surname, drivers.dob, drivers.nationality, drivers.url, nationality.country, nationality.nationality
             FROM drivers, nationality
-            WHERE drivers.naitonality = nationality.nationality'''
+            WHERE drivers.nationality = nationality.nationality'''
     list_of_country_drivers = []
     try:
         connection = get_connection()
         cursor = connection.cursor()
         cursor.execute(query)
+        print(cursor.query.decode("UTF-8"))
         for row in cursor:
-            if row[-1] == country_name:
+            if row[6] == country_name:
                 driver_dict = {}
                 driver_dict["Forename"] = row[1]
                 driver_dict["Surname"] = row[2]
@@ -152,13 +153,12 @@ def get_top_drivers(number):
 @api.route('/race/specific/<race_name>')
 def get_specific_race(race_name):
     query = '''SELECT results.raceId, results.driverId, results.points,
-            lapTime.raceID, lapTimes.driverID, lapTimes.lap, lapTimes.time,
-            pitStops.raceId, pitStop.driverId, pitStop.stop, pitStop.lap. pitStop.time, pitStop.duration,
-            drivers.id, drivers.forename, drivers.surname,
-            race.id, race.name
+            lapTimes.raceID, lapTimes.driverID, lapTimes.lap, lapTimes.time,
+            pitStops.raceId, pitStops.driverId, pitStops.stop, pitStops.lap, pitStops.time, pitStops.duration,
+            drivers.id, drivers.forename, drivers.surname, races.id, races.name
             FROM results, lapTimes, pitStops, drivers, races
-            WHERE results.raceId = lapTime.raceID AND results.raceId = pitStops.raceId AND results.raceId = race.id
-                AND results.driverId = lapTimes.driverID AND results.driverId = pitStop.driverId AND results.driverId = drivers.id'''
+            WHERE results.raceId = lapTimes.raceID AND results.raceId = pitStops.raceId AND results.raceId = races.id
+                AND results.driverId = lapTimes.driverID AND results.driverId = pitStops.driverId AND results.driverId = drivers.id'''
     list_of_top_three_driver_lapTimes = []
     list_of_top_three_driver_pitStops = []
     race_driver_lapTimes_info = {}
@@ -168,6 +168,7 @@ def get_specific_race(race_name):
         connection = get_connection()
         cursor = connection.cursor()
         cursor.execute(query)
+        print(cursor.query.decode("UTF-8"))
 
         for row in cursor:
             return_list.append(row)

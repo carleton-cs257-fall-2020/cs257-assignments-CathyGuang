@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+a {
+    color: black;
+}
+
 body {
     font-family: fantasy;
     background-image: url("bbg.jpg");
@@ -178,28 +182,25 @@ th {
     padding: 3px;
 }
 
-.country_race_table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    width: 100%;
-    border: 1px solid #ddd;
+.table_container {
+    text-align: center;
+    width: 80%;
     margin: 0 auto;
-    margin-bottom: 100px;
 }
 
-.twentieth_race_table {
+#country_race,
+#country_driver {
     border-collapse: collapse;
     border-spacing: 0;
     width: 100%;
     border: 1px solid #ddd;
     margin: 0 auto;
     margin-bottom: 100px;
-    /* overflow-x: auto; */
 }
 
 th,
 td {
-    text-align: left;
+    text-align: center;
     padding: 3px;
     white-space: nowrap;
     overflow: hidden;

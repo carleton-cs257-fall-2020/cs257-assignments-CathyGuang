@@ -89,7 +89,7 @@ function initializeMap() {
 }
 
 function doneMap(dataMap) {
-    dataMap.svg.selectAll('.datamaps-subunit').on('click', clickCountryRace, clickCountryDriver);
+    dataMap.svg.selectAll('.datamaps-subunit').on('click', clickCountryDriver, clickCountryRace);
 }
 
 function clickCountryRace(geography) {
@@ -112,9 +112,9 @@ function clickCountryRace(geography) {
             //tableBody += '<td>' + race['URL'] + '</td>';
             tableBody += '</tr>';
         }
-        var countrySummaryElement = document.getElementById('country_race');
-        if (countrySummaryElement) {
-            countrySummaryElement.innerHTML = tableBody;
+        var countryRaceSummaryElement = document.getElementById('country_race');
+        if (countryRaceSummaryElement) {
+            countryRaceSummaryElement.innerHTML = tableBody;
         }
     })
 
@@ -135,16 +135,15 @@ function clickCountryDriver(geography) {
         for (var k = 0; k < list_of_country_drivers.length; k++) {
             var driver = list_of_country_drivers[k];
             tableBody += '<tr>';
-            tableBody += '<td>' + driver['Forename'] + '</td>';
-            tableBody += '<td>' + driver['Surname'] + '</td>';
+            tableBody += '<td>' + '<a href=' + driver['URL'] + '>' + driver['Forename'] + driver['Surname'] + '</a>' + '</td>';
             tableBody += '<td>' + driver['Date of Birth'] + '</td>';
             tableBody += '<td>' + driver['Nationality'] + '</td>';
-            tableBody += '<td>' + driver['URL'] + '</td>';
+            // tableBody += '<td>' + driver['URL'] + '</td>';
             tableBody += '</tr>';
         }
-        var countrySummaryElement = document.getElementById('country_driver');
-        if (countrySummaryElement) {
-            countrySummaryElement.innerHTML = tableBody;
+        var countryDriverSummaryElement = document.getElementById('country_driver');
+        if (countryDriverSummaryElement) {
+            countryDriverSummaryElement.innerHTML = tableBody;
         }
     })
 

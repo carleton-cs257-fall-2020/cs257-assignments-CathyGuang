@@ -7,11 +7,12 @@
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{url_for('static', filename='chartist.min.css')}}">
     <script type="text/javascript" src="{{ url_for('static', filename='webapp.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='topdriver.js') }}"></script>
 </head>
 <style>
     .sample-chart-container {
         display: inline-block;
-        border: 2px gray;
+        border: 2px red;
         width: 60%;
         margin: 30px;
         padding-bottom: 50px;
@@ -44,6 +45,7 @@
     }
     
     .chart-title {
+        color: red;
         text-align: center;
         width: 100%;
         font-size: 36pt;
@@ -90,7 +92,6 @@
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='topdriver.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='chartist.min.js') }}"></script>
 
 

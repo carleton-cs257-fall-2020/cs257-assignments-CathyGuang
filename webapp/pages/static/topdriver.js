@@ -9,8 +9,8 @@ function getAPIBaseURL() {
     return baseURL;
 }
 
-function createDriverBarChart(number) {
-    var url = getAPIBaseURL() + '/topdriver/' + 20;
+function createDriverBarChart() {
+    var url = getAPIBaseURL() + '/topdriver/20';
 
     fetch(url, { method: 'get' })
 
@@ -18,18 +18,21 @@ function createDriverBarChart(number) {
 
     .then(function(top_driver_list) {
 
-        var label_list = [];
-        for (var k = 0; k < top_driver_list.length; k++) {
-            var top_driver = top_driver_list[k];
-            label_list.push(top_driver);
-        }
+        // var label_list = [];
+        // for (var k = 0; k < top_driver_list.length; k++) {
+        //     var top_driver = top_driver_list[k];
+        //     label_list.push(top_driver);
+        // }
         var data = {
-            labels: ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'],
+            labels: [Mon, Tue],
             series: [
-                { data: [17, -2, 4, 9, 11, 7, 2] },
-                { data: [1, 2, 3, 5, 8, 13, 21] }
+                [17, -2]
             ]
         };
+
+        var options = {
+            seriesBarDistance: 10
+        }
         new Chartist.Bar('#sample-bar-chart', data, options);
     })
 

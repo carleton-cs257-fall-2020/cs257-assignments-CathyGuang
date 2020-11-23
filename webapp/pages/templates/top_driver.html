@@ -7,18 +7,15 @@
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{url_for('static', filename='chartist.min.css')}}">
     <script type="text/javascript" src="{{ url_for('static', filename='webapp.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='topdriver.js') }}"></script>
 </head>
 <style>
-    .sample-chart-container {
-        display: inline-block;
-        border: 2px red;
+.topdriver-chart-container {
+        float: center;
         width: 60%;
         margin: 30px;
         padding-bottom: 50px;
     }
-    
-    .ct-series-a .ct-line {
+    /* .ct-series-a .ct-line {
         stroke: orange;
     }
     
@@ -33,23 +30,17 @@
     .ct-series-b .ct-point {
         stroke: black;
     }
+     */
     
     .ct-series-a .ct-bar {
-        stroke: #bb1111;
-        stroke-width: 20px;
+        stroke: red;
+        stroke-width: 10px;
     }
-    
+    /*     
     .ct-series-b .ct-bar {
         stroke: #1111bb;
-        stroke-width: 20px;
-    }
-    
-    .chart-title {
-        color: red;
-        text-align: center;
-        width: 100%;
-        font-size: 36pt;
-    }
+        stroke-width: 20px; */
+}
 </style>
 
 <body>
@@ -86,13 +77,13 @@
             <option value="50">Top 50</option>
         </select>
     </div>
-    <div class="sample-chart-container">
-        <div class="chart-title">A Bar Chart</div>
-        <div class="ct-chart ct-perfect-fourth" id="sample-bar-chart"></div>
+    <div class="topdriver-chart-container">
+        <div class="ct-chart ct-perfect-fourth" id="topdriver-bar-chart"></div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='chartist.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='topdriver.js') }}"></script>
 
 
 </body>

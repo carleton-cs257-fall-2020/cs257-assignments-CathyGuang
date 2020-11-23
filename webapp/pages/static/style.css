@@ -4,12 +4,17 @@
 }
 
 a {
-    color: black;
+    text-decoration: none;
+    text-decoration: underline;
+    color: white;
 }
 
 body {
     font-family: fantasy;
     background-image: url("bbg.jpg");
+    background-attachment: fixed;
+    background-size: 1600px 1000px;
+    background-repeat: no-repeat;
 }
 
 h1 {
@@ -26,7 +31,6 @@ h1 {
 h1 .smaller {
     position: absolute;
     top: 100px;
-    float: right;
     font-size: 40px;
     line-height: 40px;
 }
@@ -35,6 +39,12 @@ h2 {
     color: white;
     padding-left: 15px;
     padding-top: 20px;
+}
+
+h2 .smaller {
+    position: absolute;
+    padding-bottom: 3px;
+    font-size: 15px;
 }
 
 h3 {
@@ -198,17 +208,22 @@ th {
     margin-bottom: 100px;
 }
 
-th,
+th {
+    background-color: #730A0A;
+    color: white;
+}
+
 td {
     text-align: center;
     padding: 3px;
     white-space: nowrap;
     overflow: hidden;
     color: white;
+    text-decoration: none;
 }
 
 tr:nth-child(even) {
-    background-color: black;
+    background-color: #22273A;
 }
 
 tr:nth-child(odd) {

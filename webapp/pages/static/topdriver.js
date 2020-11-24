@@ -1,7 +1,11 @@
 window.onload = initialize;
 
 function initialize() {
-    createDriverBarChart();
+    var driverSelector = document.getElementById('top');
+    if (driverSelector) {
+        var topNumber = driverSelector.value;
+        driverSelector.onchange = createDriverBarChart(topNumber);
+    }
 }
 
 function getAPIBaseURL() {
@@ -11,7 +15,7 @@ function getAPIBaseURL() {
 
 function createDriverBarChart(topNumber) {
     var url = getAPIBaseURL() + '/topdriver/' + topNumber;
-
+    window.alert(topNumber);
     fetch(url, { method: 'get' })
 
     .then((response) => response.json())

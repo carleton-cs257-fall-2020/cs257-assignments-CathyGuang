@@ -39,6 +39,7 @@ h2 {
     color: white;
     padding-left: 15px;
     padding-top: 20px;
+    text-align: center;
 }
 
 h2 .smaller {
@@ -52,6 +53,11 @@ h3 {
     padding-left: 15px;
     padding-top: 20px;
     padding-bottom: 20px;
+}
+
+h4 {
+    color: white;
+    padding-top: 8px;
 }
 
 .navbar {
@@ -126,6 +132,14 @@ h3 {
     padding: 10px 10px 11px 10px;
     margin-top: 6px;
     margin-right: 5px;
+}
+
+.navbar .instruction {
+    color: #C8542F;
+    display: inline-block;
+    width: 60%;
+    padding: 14px;
+    height: 26px;
 }
 
 .map {

@@ -29,19 +29,22 @@
                 <a href="20century.html">20th century</a>
                 <a href="21century.html">21st century</a>
             </div>
+
         </div>
+        <div class="instruction"><i><strong>CLICK</strong> on any country and <strong>SCROLL DOWN!!</strong> Guess which country has drivers and races!</i></div>
+        <!-- <li class="instruction">Click on any country and scroll down to get drivers and races!</li> -->
         <div class="search-container">
-            <form action="action_page.php">
-                <input type="text" placeholder="Keyword for Race..." name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
+            <form action="" id="country-form">
+                <input type="text" id="countryInput" placeholder="Enter Country Name..." name="search">
+                <button type="submit" id="searchButton"><i class="fa fa-search"></i></button>
             </form>
         </div>
     </div>
-
-    <div id="world_map"></div>
+    <div id="world_map">
+    </div>
+    <br>
     <h2>Formula 1, the highest class of international single-seat auto racing. </h2>
-    <h3>Click on any country to get drivers and races!</h3>
-
+    <br>
     <div class="table_container">
 
         <table id="country_driver"></table>

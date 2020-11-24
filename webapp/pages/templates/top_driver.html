@@ -11,7 +11,7 @@
 <style>
 .topdriver-chart-container {
         float: center;
-        width: 60%;
+        width: 90%;
         margin: 30px;
         padding-bottom: 50px;
     }
@@ -32,9 +32,13 @@
     }
      */
     
+    .ct-label {
+        color: white;
+    }
+    
     .ct-series-a .ct-bar {
         stroke: red;
-        stroke-width: 10px;
+        stroke-width: 20px;
     }
     /*     
     .ct-series-b .ct-bar {
@@ -71,7 +75,7 @@
     <h2>Top Drivers in the World</h2>
     <div class="sort">
         <label for="Sort">Sort by:</label>
-        <select name="Sort" id="Sort">
+        <select name="Sort" id="top">
             <option value="10">Top 10</option>
             <option value="20">Top 20</option>
             <option value="50">Top 50</option>

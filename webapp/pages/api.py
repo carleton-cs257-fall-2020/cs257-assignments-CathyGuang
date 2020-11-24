@@ -146,6 +146,10 @@ def get_top_drivers(number):
         cur_pair = sorted_list.pop()
         top_driver_list.append(cur_pair)
 
+    driver_info_dict = {}
+    for driver in top_driver_list:
+        
+
     return json.dumps(top_driver_list)
 
 
@@ -169,53 +173,54 @@ def get_specific_race(race_name):
         cursor = connection.cursor()
         cursor.execute(query)
         print(cursor.query.decode("UTF-8"))
-
-        for row in cursor:
-            return_list.append(row)
         for row in cursor:
             if row[-1].replace(" ", "") == race_name.replace(" ", "") and int(row[2]) == 10:
-                list_of_top_three_driver_lapTimes.append("hahaha")
+                list_of_top_three_driver_lapTimes.append("hahaha in 10")
                 race_driver_lapTimes_info['Driver Position'] = 1
-                race_driver_lapTimes_info['Driver Name'] = str(row[9]) + " " + str(row[10])
-                race_driver_lapTimes_info['Lap'] = row[3]
-                race_driver_lapTimes_info['Lap Time'] = row[4]
+                race_driver_lapTimes_info['Driver Name'] = str(row[-4]) + " " + str(row[-3])
+                race_driver_lapTimes_info['Lap'] = row[5]
+                race_driver_lapTimes_info['Lap Time'] = row[6].strftime("%H:%M:%S")
                 list_of_top_three_driver_lapTimes.append(race_driver_lapTimes_info)
 
                 race_driver_pitStops_info['Driver Position'] = 1
-                race_driver_pitStops_info['Driver Name'] = str(row[9]) + " " + str(row[10])
+                race_driver_pitStops_info['Driver Name'] = str(row[-4]) + " " + str(row[-3])
                 race_driver_pitStops_info['Pit Stop Number'] = row[5]
                 race_driver_pitStops_info['Pit Stop Lap Number'] = row[6]
-                race_driver_pitStops_info['Pit Stop Time'] = row[7]
+                race_driver_pitStops_info['Pit Stop Time'] = row[7].strftime("%H:%M:%S")
                 race_driver_pitStops_info['Pit Stop Duration'] = row[8]
                 list_of_top_three_driver_pitStops.append(race_driver_pitStops_info)
 
             elif row[-1].replace(" ", "") == race_name.replace(" ", "") and int(row[2]) == 8:
+
+                list_of_top_three_driver_lapTimes.append("hahaha in 8")
                 race_driver_lapTimes_info['Driver Position'] = 2
-                race_driver_lapTimes_info['Driver Name'] = str(row[9]) + " " + str(row[10])
-                race_driver_lapTimes_info['Lap'] = row[3]
-                race_driver_lapTimes_info['Lap Time'] = row[4]
+                race_driver_lapTimes_info['Driver Name'] = str(row[-4]) + " " + str(row[-3])
+                race_driver_lapTimes_info['Lap'] = row[5]
+                race_driver_lapTimes_info['Lap Time'] = row[6].strftime("%H:%M:%S")
                 list_of_top_three_driver_lapTimes.append(race_driver_lapTimes_info)
 
                 race_driver_pitStops_info['Driver Position'] = 2
-                race_driver_pitStops_info['Driver Name'] = str(row[9]) + " " + str(row[10])
+                race_driver_pitStops_info['Driver Name'] = str(row[-4]) + " " + str(row[-3])
                 race_driver_pitStops_info['Pit Stop Number'] = row[5]
                 race_driver_pitStops_info['Pit Stop Lap Number'] = row[6]
-                race_driver_pitStops_info['Pit Stop Time'] = row[7]
+                race_driver_pitStops_info['Pit Stop Time'] = row[7].strftime("%H:%M:%S")
                 race_driver_pitStops_info['Pit Stop Duration'] = row[8]
                 list_of_top_three_driver_pitStops.append(race_driver_pitStops_info)
 
             elif row[-1].replace(" ", "") == race_name.replace(" ", "") and int(row[2]) == 6:
+
+                list_of_top_three_driver_lapTimes.append("hahaha in 6")
                 race_driver_lapTimes_info['Driver Position'] = 3
-                race_driver_lapTimes_info['Driver Name'] = str(row[9]) + " " + str(row[10])
-                race_driver_lapTimes_info['Lap'] = row[3]
-                race_driver_lapTimes_info['Lap Time'] = row[4]
+                race_driver_lapTimes_info['Driver Name'] = str(row[-4]) + " " + str(row[-3])
+                race_driver_lapTimes_info['Lap'] = row[5]
+                race_driver_lapTimes_info['Lap Time'] = row[6].strftime("%H:%M:%S")
                 list_of_top_three_driver_lapTimes.append(race_driver_lapTimes_info)
 
                 race_driver_pitStops_info['Driver Position'] = 3
-                race_driver_pitStops_info['Driver Name'] = str(row[9]) + " " + str(row[10])
+                race_driver_pitStops_info['Driver Name'] = str(row[-4]) + " " + str(row[-3])
                 race_driver_pitStops_info['Pit Stop Number'] = row[5]
                 race_driver_pitStops_info['Pit Stop Lap Number'] = row[6]
-                race_driver_pitStops_info['Pit Stop Time'] = row[7]
+                race_driver_pitStops_info['Pit Stop Time'] = row[7].strftime("%H:%M:%S")
                 race_driver_pitStops_info['Pit Stop Duration'] = row[8]
                 list_of_top_three_driver_pitStops.append(race_driver_pitStops_info)
         cursor.close()

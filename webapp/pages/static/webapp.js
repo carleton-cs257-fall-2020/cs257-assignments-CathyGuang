@@ -4,6 +4,8 @@ function initialize() {
     load20thCenRaceTable();
     load21thCenRaceTable();
     initializeMap();
+    var button = document.getElementById('searchButton');
+    button.onclick = onRaceSearchButton;
 }
 
 function getAPIBaseURL() {
@@ -193,4 +195,56 @@ function clickCountryDriver(geography) {
     .catch(function(error) {
         console.log(error);
     });
+}
+
+function onRaceSearchButton() {
+    // var countryNameElement = document.getElementById('countryInput');
+    var input = window.location.search;
+    var countryName = input.split("=").pop();
+
+    var url = getAPIBaseURL() + '/driver/country/' + countryName;
+    fetch(url, { method: 'get' })
+
+    .then((response) => response.json())
+
+    .then(function(list_of_country_races) {
+        var tableBody = '';
+        if (list_of_country_races.length == 0) {
+            tableBody += '<tr>';
+            tableBody += '<td>' + 'No Race Available for This Country' + '</td>';
+            tableBody += '</tr>';
+        } else {
+            tableBody += '<tr>';
+            tableBody += '<th>' + 'Race Name' + '</th>';
+            tableBody += '<th>' + 'Date' + '</th>';
+            tableBody += '<th>' + 'Country' + '</th>';
+            tableBody += '<th>' + 'Location' + '</th>';
+            tableBody += '<th>' + 'Circuit Name' + '</th>';
+            tableBody += '</tr>';
+            for (var k = 0; k < list_of_country_races.length; k++) {
+                var race = list_of_country_races[k];
+                tableBody += '<tr>';
+                tableBody += '<td>' + '<a href=' + race['URL'] + '>' + race['Name'] + '</a>' + '</td>';
+                tableBody += '<td>' + race['Date'] + '</td>';
+                tableBody += '<td>' + race['Country'] + '</td>';
+                tableBody += '<td>' + race['Location'] + '</td>';
+                tableBody += '<td>' + race['Circuit'] + '</td>';
+                tableBody += '</tr>';
+            }
+        }
+
+        var countryRaceSummaryElement = document.getElementById('country_race_by_search');
+        if (countryRaceSummaryElement) {
+            countryRaceSummaryElement.innerHTML = tableBody;
+        }
+    })
+
+    .catch(function(error) {
+        console.log(error);
+    });
+}
+
+function getInfo() {
+    var countryRaceSummaryElement = document.getElementById('country-form');
+
 }

@@ -146,10 +146,6 @@ def get_top_drivers(number):
         cur_pair = sorted_list.pop()
         top_driver_list.append(cur_pair)
 
-    driver_info_dict = {}
-    for driver in top_driver_list:
-        
-
     return json.dumps(top_driver_list)
 
 

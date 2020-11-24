@@ -3,53 +3,26 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}" />
     <link rel="stylesheet" href="{{url_for('static', filename='chartist.min.css')}}">
     <script type="text/javascript" src="{{ url_for('static', filename='webapp.js') }}"></script>
 </head>
 <style>
-.topdriver-chart-container {
-        float: center;
-        width: 90%;
-        margin: 30px;
-        padding-bottom: 50px;
-    }
-    /* .ct-series-a .ct-line {
-        stroke: orange;
-    }
-    
-    .ct-series-a .ct-point {
-        stroke: gray;
-    }
-    
-    .ct-series-b .ct-line {
-        stroke: blue;
-    }
-    
-    .ct-series-b .ct-point {
-        stroke: black;
-    }
-     */
-    
     .ct-label {
         color: white;
+        font-size: medium;
+        orientation: auto;
     }
     
     .ct-series-a .ct-bar {
         stroke: red;
         stroke-width: 20px;
     }
-    /*     
-    .ct-series-b .ct-bar {
-        stroke: #1111bb;
-        stroke-width: 20px; */
-}
 </style>
 
 <body>
-    <title>Formula 1 Data Summary Home</title>
-    <h1>Formula 1
+    <h1>
+        <a id="title" href="index.html">Formula 1</a>
         <span class="smaller">Data Summary</span>
     </h1>
     <div class="navbar">
@@ -64,21 +37,13 @@
                 <a href="21century.html">21st century</a>
             </div>
         </div>
-        <div class="search-container">
-            <form action="action_page.php">
-                <input type="text" placeholder="Keyword for Race..." name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
-        </div>
     </div>
     <br>
     <h2>Top Drivers in the World</h2>
     <div class="sort">
-        <label for="Sort">Sort by:</label>
-        <select name="Sort" id="top">
+        <select id="top">
             <option value="10">Top 10</option>
             <option value="20">Top 20</option>
-            <option value="50">Top 50</option>
         </select>
     </div>
     <div class="topdriver-chart-container">

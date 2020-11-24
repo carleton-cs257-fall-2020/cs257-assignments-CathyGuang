@@ -4,9 +4,13 @@
 }
 
 a {
-    text-decoration: none;
     text-decoration: underline;
     color: white;
+}
+
+#title {
+    text-decoration: none;
+    color: crimson;
 }
 
 body {
@@ -117,23 +121,6 @@ h4 {
     display: block;
 }
 
-.navbar .search-container {
-    float: right;
-}
-
-.navbar input[type=text] {
-    padding: 11px;
-    margin-top: 6px;
-    font-size: 12px;
-}
-
-.navbar .search-container button {
-    float: right;
-    padding: 10px 10px 11px 10px;
-    margin-top: 6px;
-    margin-right: 5px;
-}
-
 .navbar .instruction {
     color: #C8542F;
     display: inline-block;
@@ -171,14 +158,6 @@ h3 {
     border-collapse: collapse;
 }
 
-
-/* td,
-th {
-    border: 2px solid #dddddd;
-    text-align: left;
-    padding: 10px;
-} */
-
 .diagrams {
     text-align: center;
 }
@@ -213,6 +192,8 @@ th {
 }
 
 #country_race,
+#twentieth_race_table,
+#twentyfirst_race_table,
 #country_driver {
     border-collapse: collapse;
     border-spacing: 0;
@@ -242,4 +223,11 @@ tr:nth-child(even) {
 
 tr:nth-child(odd) {
     background-color: gray;
+}
+
+.topdriver-chart-container {
+    float: center;
+    width: 90%;
+    margin: 30px;
+    padding-bottom: 50px;
 }

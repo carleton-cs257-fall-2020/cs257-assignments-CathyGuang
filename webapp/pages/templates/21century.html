@@ -3,19 +3,19 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}" />
     <script type="text/javascript" src="{{ url_for('static', filename='webapp.js') }}"></script>
     <title>Formula 1 Data Summary Home</title>
 </head>
 
 <body>
-    <h1>Formula 1
+    <h1>
+        <a id="title" href="index.html">Formula 1</a>
         <span class="smaller">Data Summary</span>
     </h1>
+
     <div class="navbar">
         <a href="index.html">Home</a>
-
         <a href="top_driver.html">Driver</a>
 
         <div class="dropdown">
@@ -25,18 +25,20 @@
                 <a href="21century.html">21st century</a>
             </div>
         </div>
-        <div class="search-container">
-            <form action="action_page.php">
-                <input type="text" placeholder="Keyword for Race..." name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
-        </div>
+
     </div>
-    <br>
+
     <h2>Races in 21st Century</h2>
 
-    <ul id="21centuryRace">
-    </ul>
+    <h3>Click on the race name to get more information!</h3>
+
+    <div class="table_container">
+        <table class="twentyfirst_race_table" id="21centuryRace">
+        </table>
+    </div>
+
+    <br>
+    <br>
 
 
 

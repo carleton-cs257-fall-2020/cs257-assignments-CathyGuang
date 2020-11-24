@@ -1,0 +1,17 @@
+.topdriver-chart-container {
+    float: center;
+    width: 90%;
+    margin: 30px;
+    padding-bottom: 50px;
+}
+
+.ct-label {
+    color: white;
+    font-size: medium;
+    orientation: auto;
+}
+
+.ct-series-a .ct-bar {
+    stroke: red;
+    stroke-width: 20px;
+}

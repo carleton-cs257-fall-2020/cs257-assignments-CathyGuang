@@ -29,10 +29,9 @@ results.csv contains information about raceId, driverId, constructorId, points, 
 
 CREATE TABLE circuits (
     circuitId INT,
-    circuitRef TEXT,
     name TEXT,
-    location INT,
-    country INT,
+    location TEXT,
+    country TEXT,
     url TEXT
 );
 
@@ -47,11 +46,10 @@ CREATE TABLE constructors (
 
 
 CREATE TABLE drivers (
-    driverId INT,
-    driverRef TEXT,
+    id INT,
     forename TEXT,
     surname TEXT,
-    dob TEXT,
+    dob Date,
     nationality TEXT,
     url TEXT
 );
@@ -92,15 +90,11 @@ CREATE TABLE results (
     raceId INT,
     driverId INT,
     constructorId INT,
-    positionText TEXT,
-    positionOrder TEXT
-    fastestLap INT,
-    fastestLapSpeed DECIMAL,
-    points INT
+    points DECIMAL
 );
 
 
-
+\copy results from 'results.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER;
 On the top search bar, users can search using key terms. On the left of the search bar, users can select from a drop-down list which consists of categories of the search such as “Races”, “Drivers”, or “Results” to narrow down the search results. 
 
 

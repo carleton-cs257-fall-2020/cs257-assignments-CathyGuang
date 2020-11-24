@@ -1,10 +1,27 @@
+/*
+ * topdriver.js
+ * Lingyu Wei and Cathy Guang, 23 November 2020
+ *
+ * Javascript for Formula One top driver graph
+ * TopDriver bar chart is adapted from the Chartist library samples
+ * https://gionkunz.github.io/chartist-js/examples.html
+ */
+
+
 window.onload = initialize;
 
 function initialize() {
     var driverSelector = document.getElementById('top');
     if (driverSelector) {
-        var topNumber = driverSelector.value;
-        driverSelector.onchange = createDriverBarChart(topNumber);
+        driverSelector.onchange = onTopSelectorChanged;
+        createDriverBarChart(10);
+    }
+}
+
+function onTopSelectorChanged() {
+    var driverSelector = document.getElementById('top');
+    if (driverSelector) {
+        createDriverBarChart(driverSelector.value);
     }
 }
 
@@ -13,9 +30,12 @@ function getAPIBaseURL() {
     return baseURL;
 }
 
+/*
+ * createDriverBarChart()
+ * Load a bar chart that represents the top drivers. 
+ */
 function createDriverBarChart(topNumber) {
     var url = getAPIBaseURL() + '/topdriver/' + topNumber;
-    window.alert(topNumber);
     fetch(url, { method: 'get' })
 
     .then((response) => response.json())
@@ -24,6 +44,7 @@ function createDriverBarChart(topNumber) {
         var labelList = [];
         var dataList = [];
         for (var k = 0; k < top_driver_list.length; k++) {
+            // Add driver names and points to label list and data list 
             var top_driver = top_driver_list[k];
             labelList.push(top_driver[0]);
             dataList.push(top_driver[1]);
@@ -34,13 +55,7 @@ function createDriverBarChart(topNumber) {
             labels: labelList,
             series: [dataList]
         };
-        if (topNumber == 50) {
-            var options = {
-                seriesBarDistance: 10,
-                horizontalBars: true,
-                reverseData: true
-            }
-        } else {
+        if (topNumber == 10) {
             var options = {
                 axisX: {
                     position: 'start'
@@ -49,6 +64,16 @@ function createDriverBarChart(topNumber) {
                     position: 'end'
                 }
             };
+
+        } else {
+            var options = {
+                axisX: {
+                    position: 'start'
+                },
+                seriesBarDistance: 20,
+                horizontalBars: true,
+                reverseData: true
+            }
         }
 
         new Chartist.Bar('#topdriver-bar-chart', data, options);

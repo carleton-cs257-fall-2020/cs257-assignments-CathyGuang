@@ -1,11 +1,20 @@
+/*
+ * webapp.js
+ * Lingyu Wei and Cathy Guang, 11 November 2020
+ *
+ * Javascript for Formula One website design
+ *
+ * Datamaps is Copyright (c) 2012 Mark DiMarco
+ * https://github.com/markmarkoh/datamaps
+ */
+
+
 window.onload = initialize;
 
 function initialize() {
     load20thCenRaceTable();
     load21thCenRaceTable();
     initializeMap();
-    var button = document.getElementById('searchButton');
-    button.onclick = onRaceSearchButton;
 }
 
 function getAPIBaseURL() {
@@ -13,6 +22,10 @@ function getAPIBaseURL() {
     return baseURL;
 }
 
+/*
+ * load20thCenRaceTable()
+ * Load table with data of 20th century race information.
+ */
 function load20thCenRaceTable() {
     var url = getAPIBaseURL() + '/race/20';
 
@@ -22,17 +35,18 @@ function load20thCenRaceTable() {
 
     .then(function(list_of_20_races) {
         var tableBody = '';
+        // Add table title
         tableBody += '<tr>';
-        tableBody += '<td>' + 'Race Name' + '</td>';
-        tableBody += '<td>' + 'Date' + '</td>';
-        tableBody += '<td>' + 'Country' + '</td>';
-        tableBody += '<td>' + 'Location' + '</td>';
-        tableBody += '<td>' + 'Circuit Name' + '</td>';
+        tableBody += '<th>' + 'Race Name' + '</th>';
+        tableBody += '<th>' + 'Date' + '</th>';
+        tableBody += '<th>' + 'Country' + '</th>';
+        tableBody += '<th>' + 'Location' + '</th>';
+        tableBody += '<th>' + 'Circuit Name' + '</th>';
         tableBody += '</tr>';
         for (var k = 0; k < list_of_20_races.length; k++) {
             var race = list_of_20_races[k];
+            // Add table contents
             tableBody += '<tr>';
-            // tableBody += '<td>' + race['Name'] + '</td>';
             tableBody += '<td>' + '<a href=' + race['URL'] + '>' + race['Name'] + '</a>' + '</td>';
             tableBody += '<td>' + race['Date'] + '</td>';
             tableBody += '<td>' + race['Country'] + '</td>';
@@ -51,6 +65,10 @@ function load20thCenRaceTable() {
     });
 }
 
+/*
+ * load21thCenRaceTable()
+ * Load table with data of 21st century race information.
+ */
 function load21thCenRaceTable() {
     var url = getAPIBaseURL() + '/race/21';
 
@@ -60,23 +78,23 @@ function load21thCenRaceTable() {
 
     .then(function(list_of_21_races) {
         var tableBody = '';
+        // Add table title
         tableBody += '<tr>';
-        tableBody += '<td>' + 'Race Name' + '</td>';
-        tableBody += '<td>' + 'Date' + '</td>';
-        tableBody += '<td>' + 'Country' + '</td>';
-        tableBody += '<td>' + 'Location' + '</td>';
-        tableBody += '<td>' + 'Circuit Name' + '</td>';
+        tableBody += '<th>' + 'Race Name' + '</th>';
+        tableBody += '<th>' + 'Date' + '</th>';
+        tableBody += '<th>' + 'Country' + '</th>';
+        tableBody += '<th>' + 'Location' + '</th>';
+        tableBody += '<th>' + 'Circuit Name' + '</th>';
         tableBody += '</tr>';
         for (var k = 0; k < list_of_21_races.length; k++) {
             var race = list_of_21_races[k];
             tableBody += '<tr>';
-            // tableBody += '<td>' + race['Name'] + '</td>';
+            // Add table contents
             tableBody += '<td>' + '<a href=' + race['URL'] + '>' + race['Name'] + '</a>' + '</td>';
             tableBody += '<td>' + race['Date'] + '</td>';
             tableBody += '<td>' + race['Country'] + '</td>';
             tableBody += '<td>' + race['Location'] + '</td>';
             tableBody += '<td>' + race['Circuit'] + '</td>';
-            // tableBody += '<td>' + race['URL'] + '</td>';
             tableBody += '</tr>';
         }
         var race21ListElement = document.getElementById('21centuryRace');
@@ -89,7 +107,10 @@ function load21thCenRaceTable() {
         console.log(error);
     });
 }
-
+/*
+ * initializeMap()
+ * Create a new map.
+ */
 function initializeMap() {
     var map = new Datamap({
         element: document.getElementById('world_map'),
@@ -114,6 +135,10 @@ function onClickCountry(geography) {
     clickCountryDriver(geography);
 }
 
+/*
+ * clickCountryRace()
+ * When user clicks on a country, draw the table with races information for that country.
+ */
 function clickCountryRace(geography) {
     var url = getAPIBaseURL() + '/race/country/' + geography.properties.name;
 
@@ -124,6 +149,7 @@ function clickCountryRace(geography) {
     .then(function(list_of_country_races) {
         var tableBody = '';
         if (list_of_country_races.length == 0) {
+            // Draw an empty table if there's no race took place in the specific country
             tableBody += '<tr>';
             tableBody += '<td>' + 'No Race Available for This Country' + '</td>';
             tableBody += '</tr>';
@@ -136,6 +162,7 @@ function clickCountryRace(geography) {
             tableBody += '<th>' + 'Circuit Name' + '</th>';
             tableBody += '</tr>';
             for (var k = 0; k < list_of_country_races.length; k++) {
+                // Add all the race information from list into table
                 var race = list_of_country_races[k];
                 tableBody += '<tr>';
                 tableBody += '<td>' + '<a href=' + race['URL'] + '>' + race['Name'] + '</a>' + '</td>';
@@ -158,6 +185,10 @@ function clickCountryRace(geography) {
     });
 }
 
+/*
+ * clickCountryDriver()
+ * When user clicks on a country, draw the table with drivers information for that country.
+ */
 function clickCountryDriver(geography) {
     var url = getAPIBaseURL() + '/driver/country/' + geography.properties.name;
 
@@ -168,6 +199,7 @@ function clickCountryDriver(geography) {
     .then(function(list_of_country_drivers) {
         var tableBody = '';
         if (list_of_country_drivers.length == 0) {
+            // Draw an empty table if there's no driver from the specific country
             tableBody += '<tr>';
             tableBody += '<td>' + 'No Driver Available for This Country' + '</td>';
             tableBody += '</tr>';
@@ -178,6 +210,7 @@ function clickCountryDriver(geography) {
             tableBody += '<th>' + 'Nationality' + '</th>';
             tableBody += '</tr>';
             for (var k = 0; k < list_of_country_drivers.length; k++) {
+                // Add all the driver information from list into table
                 var driver = list_of_country_drivers[k];
                 tableBody += '<tr>';
                 tableBody += '<td>' + '<a href=' + driver['URL'] + '>' + driver['Forename'] + driver['Surname'] + '</a>' + '</td>';
@@ -195,56 +228,4 @@ function clickCountryDriver(geography) {
     .catch(function(error) {
         console.log(error);
     });
-}
-
-function onRaceSearchButton() {
-    // var countryNameElement = document.getElementById('countryInput');
-    var input = window.location.search;
-    var countryName = input.split("=").pop();
-
-    var url = getAPIBaseURL() + '/driver/country/' + countryName;
-    fetch(url, { method: 'get' })
-
-    .then((response) => response.json())
-
-    .then(function(list_of_country_races) {
-        var tableBody = '';
-        if (list_of_country_races.length == 0) {
-            tableBody += '<tr>';
-            tableBody += '<td>' + 'No Race Available for This Country' + '</td>';
-            tableBody += '</tr>';
-        } else {
-            tableBody += '<tr>';
-            tableBody += '<th>' + 'Race Name' + '</th>';
-            tableBody += '<th>' + 'Date' + '</th>';
-            tableBody += '<th>' + 'Country' + '</th>';
-            tableBody += '<th>' + 'Location' + '</th>';
-            tableBody += '<th>' + 'Circuit Name' + '</th>';
-            tableBody += '</tr>';
-            for (var k = 0; k < list_of_country_races.length; k++) {
-                var race = list_of_country_races[k];
-                tableBody += '<tr>';
-                tableBody += '<td>' + '<a href=' + race['URL'] + '>' + race['Name'] + '</a>' + '</td>';
-                tableBody += '<td>' + race['Date'] + '</td>';
-                tableBody += '<td>' + race['Country'] + '</td>';
-                tableBody += '<td>' + race['Location'] + '</td>';
-                tableBody += '<td>' + race['Circuit'] + '</td>';
-                tableBody += '</tr>';
-            }
-        }
-
-        var countryRaceSummaryElement = document.getElementById('country_race_by_search');
-        if (countryRaceSummaryElement) {
-            countryRaceSummaryElement.innerHTML = tableBody;
-        }
-    })
-
-    .catch(function(error) {
-        console.log(error);
-    });
-}
-
-function getInfo() {
-    var countryRaceSummaryElement = document.getElementById('country-form');
-
 }
